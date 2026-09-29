@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Movies — CineVault</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <div class="sidebar">
+    <p class="brand">CineVault</p>
+    <p class="role-tag">Member</p>
+    <div class="nav-link active">Movies</div>
+    <div class="nav-link" onclick="window.location.href='/chatbot'">AI Assistant</div>
+    <div class="nav-link" onclick="viewProfile()">My Profile</div>
+    <div class="spacer"></div>
+    <button class="btn btn-ghost" onclick="logoutUser()" style="margin-bottom:8px;">Log Out</button>
+    <button class="btn btn-danger" onclick="deleteAccountUser()">Delete Account</button>
+  </div>
+
+  <div class="main">
+    <div class="main-header">
+      <div>
+        <h1>Browse Movies</h1>
+        <p class="sub">View details and download anything in the library.</p>
+      </div>
+    </div>
+
+    <div id="movie-grid" class="movie-grid">
+      <div class="empty-state">Loading movies...</div>
+    </div>
+  </div>
+</div>
+
+<!-- Details modal -->
+<div class="modal-backdrop" id="details-modal">
+  <div class="modal">
+    <h2 id="details-title">Title</h2>
+    <p class="ticket-genre" id="details-genre">Genre</p>
+    <p class="ticket-desc" id="details-desc">Description</p>
+    <p class="ticket-meta" id="details-meta">Uploaded on ...</p>
+    <div class="ticket-actions">
+      <button class="btn btn-primary" style="width:auto;" id="details-download">Download</button>
+      <button class="btn btn-ghost" onclick="closeDetails()">Close</button>
+    </div>
+
+    <div class="comments-section">
+      <h3>Comments</h3>
+      <div id="comments-list">
+        <div class="empty-state">Loading comments...</div>
+      </div>
+      <div class="comment-input-row">
+        <input type="text" id="comment-input" placeholder="Write a comment...">
+        <button class="btn btn-primary" style="width:auto;" onclick="postComment()">Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/user.js"></script>
+</body>
+</html>

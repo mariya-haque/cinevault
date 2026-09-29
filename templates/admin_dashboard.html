@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin — CineVault</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <div class="sidebar">
+    <p class="brand">CineVault</p>
+    <p class="role-tag">Admin</p>
+    <div class="nav-link active" id="nav-library" onclick="switchSection('library')">Manage Library</div>
+    <div class="nav-link" id="nav-chats" onclick="switchSection('chats')">User Chats</div>
+    <div class="nav-link" id="nav-comments" onclick="switchSection('comments')">Comments</div>
+    <div class="spacer"></div>
+    <button class="btn btn-ghost" onclick="logoutAdmin()">Log Out</button>
+  </div>
+
+  <div class="main">
+
+    <!-- ============ LIBRARY SECTION ============ -->
+    <div id="section-library">
+      <div class="main-header">
+        <div>
+          <h1>Manage Library</h1>
+          <p class="sub" id="movie-count">0 titles in the library</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Upload a Movie / File</h2>
+        <div class="form-grid">
+          <div class="field">
+            <label for="up-title">Title</label>
+            <input type="text" id="up-title" placeholder="e.g. Interstellar">
+          </div>
+          <div class="field">
+            <label for="up-genre">Genre</label>
+            <input type="text" id="up-genre" placeholder="e.g. Sci-Fi">
+          </div>
+          <div class="field full">
+            <label for="up-desc">Description</label>
+            <textarea id="up-desc" rows="3" placeholder="Short description..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="up-file">File</label>
+            <input type="file" id="up-file">
+          </div>
+        </div>
+        <button class="btn btn-primary" style="width:auto; margin-top:6px;" onclick="uploadMovie()">Upload</button>
+      </div>
+
+      <div id="movie-grid" class="movie-grid">
+        <div class="empty-state">Loading library...</div>
+      </div>
+    </div>
+
+    <!-- ============ USER CHATS SECTION ============ -->
+    <div id="section-chats" style="display:none;">
+      <div class="main-header">
+        <div>
+          <h1>User Chats</h1>
+          <p class="sub">See what each user has been asking the AI assistant.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Select a User</h2>
+        <div id="chat-user-list" class="movie-grid" style="grid-template-columns:repeat(auto-fill, minmax(200px,1fr));">
+          <div class="empty-state">Loading users...</div>
+        </div>
+      </div>
+
+      <div class="panel" id="chat-viewer" style="display:none;">
+        <h2 id="chat-viewer-title">Conversation</h2>
+        <div id="chat-box" style="height:360px;"></div>
+      </div>
+    </div>
+
+    <!-- ============ COMMENTS SECTION ============ -->
+    <div id="section-comments" style="display:none;">
+      <div class="main-header">
+        <div>
+          <h1>Comments</h1>
+          <p class="sub">Moderate comments left on movies by users.</p>
+        </div>
+      </div>
+
+      <div id="comments-list">
+        <div class="empty-state">Loading comments...</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Edit modal -->
+<div class="modal-backdrop" id="edit-modal">
+  <div class="modal">
+    <h2>Edit Movie</h2>
+    <div class="field">
+      <label for="edit-title">Title</label>
+      <input type="text" id="edit-title">
+    </div>
+    <div class="field">
+      <label for="edit-genre">Genre</label>
+      <input type="text" id="edit-genre">
+    </div>
+    <div class="field">
+      <label for="edit-desc">Description</label>
+      <textarea id="edit-desc" rows="3"></textarea>
+    </div>
+    <div class="ticket-actions">
+      <button class="btn btn-primary" style="width:auto;" onclick="saveEdit()">Save Changes</button>
+      <button class="btn btn-ghost" onclick="closeEdit()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/admin.js"></script>
+</body>
+</html>

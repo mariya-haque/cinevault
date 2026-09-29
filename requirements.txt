@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+jinja2
+python-jose
+pydantic[email]
+python-dotenv
+openai
+python-multipart
+sqlalchemy
+psycopg2-binary

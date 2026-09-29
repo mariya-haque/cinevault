@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chatbot — CineVault</title>
+<link rel="stylesheet" href="/static/style.css">
+<script>
+  // Guard: must be logged in
+  const token = localStorage.getItem("token");
+  if (!token) {
+      window.location.href = "/login";
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+      const role = localStorage.getItem("role");
+      const roleTag = document.getElementById("role-tag");
+      if (roleTag && role) {
+          roleTag.innerText = role === "admin" ? "Admin" : "Member";
+      }
+      if (typeof loadChatHistory === "function") {
+          loadChatHistory();
+      }
+  });
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <div class="sidebar">
+    <p class="brand">CineVault</p>
+    <p class="role-tag" id="role-tag">Member</p>
+    <div class="nav-link" onclick="window.location.href='/dashboard'">Movies</div>
+    <div class="nav-link active">AI Assistant</div>
+    <div class="nav-link" onclick="profile()">My Profile</div>
+    <div class="spacer"></div>
+    <button class="btn btn-ghost" onclick="logout()" style="margin-bottom:8px;">Log Out</button>
+    <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+  </div>
+
+  <div class="main">
+    <div class="chat-wrap" style="padding:0;">
+      <div class="main-header">
+        <div>
+          <h1>AI Assistant</h1>
+          <p class="sub">Ask anything — your conversation is saved automatically.</p>
+        </div>
+      </div>
+
+      <div id="chat-box"></div>
+
+      <div class="chat-input-row">
+        <input type="text" id="message" placeholder="Type a message...">
+        <button class="btn btn-primary" style="width:auto;" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
